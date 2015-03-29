@@ -1,3 +1,10 @@
 #!/bin/bash
 
+if [ $# -ne 1 ] || [ "$1" == -h ]
+then
+  echo "usage: $0 <file>"
+  echo 'outputs media duration'
+  exit
+fi
+
 ffprobe "$1" 2>&1 | grep -Po '(?<=Duration: )[^,]+(?=,)'
