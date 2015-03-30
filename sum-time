@@ -1,0 +1,14 @@
+#!/bin/bash
+
+number='[[:digit:]]{1,2}'
+for arg
+do
+  [[ "$arg" =~ ^(($number):)?(($number):)?($number)(\.($number))?$ ]]
+  let "result+= \
+    360000 * 10#${BASH_REMATCH[2]:-0} + \
+    6000 * 10#${BASH_REMATCH[4]:-0} + \
+    100 * 10#${BASH_REMATCH[5]} + \
+    10#${BASH_REMATCH[7]:-0}"
+done
+
+echo "$result"

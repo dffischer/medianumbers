@@ -4,6 +4,8 @@ This repository collects small scripts and outgrown aliases for the query and ma
 
 - **duration** queries the play length of a file.
 
+- **sum-time** adds up timecodes.
+
 
 ## Installation
 
