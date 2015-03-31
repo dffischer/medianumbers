@@ -11,4 +11,14 @@ do
     10#${BASH_REMATCH[7]:-0}"
 done
 
-echo "$result"
+echo-exist() {
+  if [ "$1" -gt 0 ]
+  then
+    printf "$2%02d$3" "$1"
+  fi
+}
+echo-exist "$(($result / 360000))" '' :
+echo-exist "$(($result / 6000 % 60))" '' :
+printf "$(($result / 100 % 60))"
+echo-exist "$(($result % 100))" .
+echo
