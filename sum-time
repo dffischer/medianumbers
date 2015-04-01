@@ -17,7 +17,7 @@ echo-exist() {
     printf "$2%02d$3" "$1"
   fi
 }
-echo-exist "$(($result / 360000))" '' :
+echo-exist "$((${result=0} / 360000))" '' :
 echo-exist "$(($result / 6000 % 60))" '' :
 printf "$(($result / 100 % 60))"
 echo-exist "$(($result % 100))" .
