@@ -1,10 +1,16 @@
 #!/bin/bash
 
-if [ $# -ne 1 ] || [ "$1" == -h ]
-then
-  echo "usage: $0 <file>"
-  echo 'outputs media duration'
-  exit
-fi
+for argument
+do
+  if [ "$argument" == -h ]
+  then
+    echo "usage: $0 [file ...]"
+    echo 'outputs media duration'
+    exit
+  fi
+done
 
-ffprobe "$1" 2>&1 | grep -Po '(?<=Duration: )[^,]+(?=,)'
+for argument
+do
+  ffprobe "$argument" 2>&1 | grep -Po '(?<=Duration: )[^,]+(?=,)'
+done
