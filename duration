@@ -1,16 +1,24 @@
 #!/bin/bash
 
-for argument
+while [ $OPTIND -le $# ]
 do
-  if [ "$argument" == -h ]
+  if getopts 'h' argument
   then
-    echo "usage: $0 [file ...]"
-    echo 'outputs media duration'
-    exit
+    case $argument in
+      h)
+        echo "usage: $0 [file ...]"
+        echo 'outputs media duration'
+        echo ' -h  show this text'
+        exit ;;
+      \?) exit 1 ;;
+    esac
+  else
+    input+=("${!OPTIND}")
+    let OPTIND++
   fi
 done
 
-for argument
+for argument in "${input[@]}"
 do
   ffprobe "$argument" 2>&1 | grep -Po '(?<=Duration: )[^,]+(?=,)'
 done
