@@ -18,7 +18,7 @@ do
   fi
 done
 
-for argument in "${input[@]}"
+for input in "${input[@]}"
 do
-  ffprobe "$argument" 2>&1 | grep -Po '(?<=Duration: )[^,]+(?=,)'
+  ffprobe "$input" 2>&1 | grep -Po '(?<=Duration: )[^,]+(?=,)'
 done
