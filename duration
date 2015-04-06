@@ -1,15 +1,23 @@
 #!/bin/bash
 
+output() {
+  echo "$1"
+}
 while [ $OPTIND -le $# ]
 do
-  if getopts 'h' argument
+  if getopts 'vh' argument
   then
     case $argument in
       h)
         echo "usage: $0 [file ...]"
         echo 'outputs media duration'
         echo ' -h  show this text'
+        echo ' -v  also output file names'
         exit ;;
+      v)
+        output() {
+          echo "$1 $2"
+        } ;;
       \?) exit 1 ;;
     esac
   else
@@ -20,5 +28,7 @@ done
 
 for input in "${input[@]}"
 do
-  ffprobe "$input" 2>&1 | grep -Po '(?<=Duration: )[^,]+(?=,)'
+  output "$(
+    ffprobe "$input" 2>&1 | grep -Po '(?<=Duration: )[^,]+(?=,)'
+  )" "$input"
 done
