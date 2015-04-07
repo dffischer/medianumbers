@@ -6,6 +6,8 @@ This repository collects small scripts and outgrown aliases for the query and ma
 
 - **sum-time** adds up timecodes.
 
+- **stretch** re-encodes to a multiple of the original speed.
+
 
 ## Installation
 
