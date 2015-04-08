@@ -1,3 +1,10 @@
 #!/bin/bash
 
+if [ $# -ne 3 ] || [ "$1" = -h ] || [ "$2" = -h ] || [ "$3" = -h ]
+then
+  echo "usage: $0 <factor> <input> <output>"
+  echo 'strech playback speed'
+  exit
+fi
+
 ffmpeg -i "$2" -filter:a "atempo=$1" -filter:v "setpts=PTS/($1)" "$3"
