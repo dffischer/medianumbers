@@ -11,4 +11,4 @@ This repository collects small scripts and outgrown aliases for the query and ma
 
 ## Installation
 
-The scripts can be used as they are here, or copied somewhere in your `$PATH` for frequent use.
+The scripts can be used as they are here, or copied somewhere in your `$PATH` for frequent use. Most of them need [ffmpeg](http://ffmpeg.org/), [bash](http://tiswww.case.edu/php/chet/bash/bashtop.html) and [grep](https://www.gnu.org/software/grep/) to function.
