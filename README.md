@@ -11,4 +11,6 @@ This repository collects small scripts and outgrown aliases for the query and ma
 
 ## Installation
 
-The scripts can be used as they are here, or copied somewhere in your `$PATH` for frequent use. All of them need [bash](http://tiswww.case.edu/php/chet/bash/bashtop.html) to function. _Duration_ and _stretch_ also need [ffmpeg](http://ffmpeg.org/) and _duration_ needs [grep](https://www.gnu.org/software/grep/) on top of that.
+The scripts can be used as they are here, or copied somewhere in your `$PATH` for frequent use.
+
+All of them need [bash](http://tiswww.case.edu/php/chet/bash/bashtop.html) to function. _Duration_ and _stretch_ also need [ffmpeg](http://ffmpeg.org/) and _duration_ needs [grep](https://www.gnu.org/software/grep/) on top of that. Accompanying manual pages can be created from the respective markdown descriptions of the programs using [ronn](https://github.com/rtomayko/ronn).
