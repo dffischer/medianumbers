@@ -2,7 +2,7 @@
 
 ## SYNOPSIS
 
-`strech` <`factor`> <`input`> <`output`>
+`strech` <`factor`> <`input`> [`output`]
 
 
 ## DESCRIPTION
@@ -13,6 +13,8 @@ Invoking this command re-encodes the given input audio or video, speeding up or 
 ## OPTIONS
 
 The factor denotes the change in playback speed. A factor of 1 leaves the original unchanged, greater number speed up, smaller numbers slow down. The length of the result will respectively grow or shrink. To be precise, a factor of x will make everything x times as fast, yielding a track that is 1/x times as long as the input.
+
+If no output file name is given, the name of the input file will be used, with the marker *.stretched* inserted just before the extension.
 
 
 ## EXIT STATUS

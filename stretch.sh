@@ -1,8 +1,9 @@
 #!/bin/bash
 
-if [ $# -ne 3 ] || [ "$1" = -h ] || [ "$2" = -h ] || [ "$3" = -h ]
+if [ $# -lt 2 ] || [ $# -gt 3 ] ||
+  [ "$1" = -h ] || [ "$2" = -h ] || [ "$3" = -h ]
 then
-  echo "usage: $0 <factor> <input> <output>"
+  echo "usage: $0 <factor> <input> [output]"
   echo 'strech playback speed'
   exit
 fi
@@ -14,4 +15,4 @@ then
 fi
 
 ffmpeg -i "$2" -filter:a "atempo=$1" -filter:v "setpts=PTS/($1)" \
-  -map_metadata 0 "$3"
+  -map_metadata 0 "${3-"${2%.*}.streched.${2##*.}"}"
