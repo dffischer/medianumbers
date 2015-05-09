@@ -1,28 +1,46 @@
 #!/bin/bash
 
-if [ $# -lt 1 ] || [ $# -gt 3 ] ||
-  [ "$1" = -h ] || [ "$2" = -h ] || [ "$3" = -h ]
-then
-  echo "usage: $0 [factor] <input> [output]"
-  echo 'strech playback speed'
-  exit
-fi
-
-if [ -e "$1" ]
-then
-  # When the first argument already names a file, no factor was given.
-  factor=3/4
-else
-  if [[ "$1" =~ ^[[:digit:]]+([/.][[:digit:]]+)?$ ]]
+while [ $OPTIND -le $# ]
+do
+  if getopts 'ho:s:' argument
   then
-    factor=$1
-    shift
+    case $argument in
+      h)
+        echo "usage: $0 [options] <input>"
+        echo 'strech playback speed'
+        echo ' -h           only shows this help text'
+        echo ' -s <factor>  new playback speed as factor of old'
+        echo ' -o <output>  output file name'
+        exit ;;
+      o) output="$OPTARG" ;;
+      s)
+        if [[ "$OPTARG" =~ ^[[:digit:]]+([/.][[:digit:]]+)?$ ]]
+        then
+          factor="$OPTARG"
+        else
+          echo "factor $OPTARG is not numeric"
+          exit 1
+        fi ;;
+      \?) exit 1 ;;
+    esac
   else
-    echo "factor $1 is not numeric"
-    exit 1
+    if [ -z ${input++} ]
+    then
+      readonly input="${!OPTIND}"
+    else
+      echo "$0: too many arguments" >&2
+      exit 1
+    fi
+    let OPTIND++
   fi
+done
+
+if [ -z ${input++} ]
+then
+  echo "$0: no input file given" >&2
+  exit 0
 fi
 
-ffmpeg -i "$1" \
-  -filter:a "atempo=$factor" -filter:v "setpts=PTS/($factor)" \
-  -map_metadata 0 "${2-"${1%.*}.streched.${1##*.}"}"
+ffmpeg -i "$input" \
+  -filter:a "atempo=${factor=4/3}" -filter:v "setpts=PTS/($factor)" \
+  -map_metadata 0 "${output-"${input%.*}.streched.${input##*.}"}"

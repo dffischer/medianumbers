@@ -2,21 +2,28 @@
 
 ## SYNOPSIS
 
-`strech` [`factor`] <`input`> [`output`]
+`strech` [_`options`_] <`input`>
 
 
 ## DESCRIPTION
 
-Invoking this command re-encodes the given input audio or video, speeding up or slowing down its playback by the given factor, saving the result to the given output file.
+Invoking this command re-encodes the given input audio or video, speeding up or slowing down its playback.
 
 
 ## OPTIONS
 
-The factor denotes the change in playback speed. A factor of 1 leaves the original unchanged, greater number speed up, smaller numbers slow down. The length of the result will respectively grow or shrink. To be precise, a factor of x will make everything x times as fast, yielding a track that is 1/x times as long as the input.
+  - `-h`:
+    Show a summary of the options.
 
-If the factor is omitted, it defaults to *4/3*, speeding up by one third, reducing the length by 25 percent. This should be a significant speed up just low enough that even quick speakers stay understandable.
+  - `-s` _factor_:
+    Multiply playback speed. A factor of 1 leaves the original unchanged, greater number speed up, smaller numbers slow down. The length of the result will respectively grow or shrink. To be precise, a factor of x will make everything x times as fast, yielding a track that is 1/x times as long as the input.
 
-If no output file name is given, the name of the input file will be used, with the marker *.stretched* inserted just before the extension.
+    Valid factor values are floating point numbers or an integral fraction, always from the interval [0.5, 2]. If it is omitted, it defaults to *4/3*, speeding up by one third, reducing the length by 25 percent. This should be a significant speed up just low enough that even quick speakers stay understandable.
+
+  - `-o` _output_:
+    Place the resulting video with the given file name.
+
+    Without this option, the name of the input file will be used, with the marker *.stretched* inserted just before the extension.
 
 
 ## EXIT STATUS
