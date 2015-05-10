@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Parse arguments.
 while [ $OPTIND -le $# ]
 do
   if getopts 'ho:s:' argument
@@ -35,12 +36,14 @@ do
   fi
 done
 
+# Require input.
 if [ -z ${input++} ]
 then
   echo "$0: no input file given" >&2
   exit 0
 fi
 
+# Encode.
 ffmpeg -i "$input" \
   -filter:a "atempo=${factor=4/3}" -filter:v "setpts=PTS/($factor)" \
   -map_metadata 0 "${output-"${input%.*}.streched.${input##*.}"}"
