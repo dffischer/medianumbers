@@ -23,7 +23,9 @@ Invoking this command re-encodes the given input audio or video, speeding up or 
   - `-o` _output_:
     Place the resulting video with the given file name.
 
-    Without this option, the name of the input file will be used, with the marker *.stretched* inserted just before the extension.
+    The templates `$path`, `$file`, `$name` and `$ext` may be included in the argument to this option an are interpreted respectively as the file path, the the full file name, the basename and the extension of the input file.
+
+    Without this option, the output file defaults to `$name.stretched.$ext`.
 
 
 ## EXIT STATUS

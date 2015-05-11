@@ -44,6 +44,8 @@ then
 fi
 
 # Encode.
+readonly name="${input##*/}"
 ffmpeg -i "$input" \
   -filter:a "atempo=${factor=4/3}" -filter:v "setpts=PTS/($factor)" \
-  -map_metadata 0 "${output-"${input%.*}.streched.${input##*.}"}"
+  -map_metadata 0 "$(env - file="$name" name="${name%.*}" ext="${name##*.}" \
+    path="${input%%/*}" envsubst <<< "${output-"\$name.stretched.\$ext"}")"
