@@ -25,27 +25,17 @@ do
       \?) exit 1 ;;
     esac
   else
-    if [ -z ${input++} ]
-    then
-      readonly input="${!OPTIND}"
-    else
-      echo "$0: too many arguments" >&2
-      exit 1
-    fi
+    inputs+=("$(realpath "${!OPTIND}")")
     let OPTIND++
   fi
 done
 
-# Require input.
-if [ -z ${input++} ]
-then
-  echo "$0: no input file given" >&2
-  exit 0
-fi
-
 # Encode.
-readonly name="${input##*/}"
-ffmpeg -i "$input" \
-  -filter:a "atempo=${factor=4/3}" -filter:v "setpts=PTS/($factor)" \
-  -map_metadata 0 "$(env - file="$name" name="${name%.*}" ext="${name##*.}" \
-    path="${input%%/*}" envsubst <<< "${output-"\$name.stretched.\$ext"}")"
+for input in "${inputs[@]}"
+do
+  name="${input##*/}"
+  ffmpeg -i "$input" \
+    -filter:a "atempo=${factor=4/3}" -filter:v "setpts=PTS/($factor)" \
+    -map_metadata 0 "$(env - file="$name" name="${name%.*}" ext="${name##*.}" \
+      path="${input%%/*}" envsubst <<< "${output-"\$name.stretched.\$ext"}")"
+done
