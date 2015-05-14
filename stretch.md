@@ -27,6 +27,13 @@ Invoking this command re-encodes the given input audio or video, speeding up or 
 
     Without this option, the output file defaults to `$name.stretched.$ext`.
 
+  - `-(` ... `-)`:
+    To further control the re-encoding process necessary to adjust the speed, options may be passed to the utilized ffmpeg(1) command by enclosing them in bracket arguments. Be aware that most shells like to interpret these as special characters and they thus most likely need to be escaped. Any argument found between them is passed to ffmpeg unaltered.
+
+    For every opening one, there has to be a closing one. Nesting them is not supported.
+
+    Arbitrary options can be passed, even ones that alter the filtergraph or mappings. They will be placed as final output options. However, they must be comaptible with the single input and output files, passed through as given to this program, as well as the speed-altering filters _atempo_ and _setpts_ already present to add the rendered subtitles into the video image.
+
 
 ## EXIT STATUS
 

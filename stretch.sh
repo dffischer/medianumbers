@@ -3,7 +3,7 @@
 # Parse arguments.
 while [ $OPTIND -le $# ]
 do
-  if getopts 'ho:s:' argument
+  if getopts 'ho:s:()' argument
   then
     case $argument in
       h)
@@ -22,6 +22,22 @@ do
           echo "factor $OPTARG is not numeric"
           exit 1
         fi ;;
+      \()
+        while [ "${!OPTIND}" != '-)' ]
+        do
+          if [ $OPTIND -ge $# ]
+          then
+            echo "$0: -( without -)"
+            exit 1
+          fi
+          pass+=("${!OPTIND}")
+          let OPTIND++
+        done
+        let OPTIND++
+        ;;
+      \))
+        echo "$0: -) without -("
+        exit 1 ;;
       \?) exit 1 ;;
     esac
   else
@@ -35,8 +51,8 @@ done
 for input in "${inputs[@]}"
 do
   name="${input##*/}"
-  ffmpeg -i "$input" \
+  ffmpeg -i "$input" -map_metadata 0 \
     -filter:a "atempo=${factor=4/3}" -filter:v "setpts=PTS/($factor)" \
-    -map_metadata 0 "$(env - file="$name" name="${name%.*}" ext="${name##*.}" \
+    "${pass[@]}" "$(env - file="$name" name="${name%.*}" ext="${name##*.}" \
       path="${input%%/*}" envsubst <<< "$output")"
 done
