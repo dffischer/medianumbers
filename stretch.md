@@ -18,7 +18,7 @@ Invoking this command re-encodes the given input audio or video, speeding up or 
   - `-s` _factor_:
     Multiply playback speed. A factor of 1 leaves the original unchanged, greater number speed up, smaller numbers slow down. The length of the result will respectively grow or shrink. To be precise, a factor of x will make everything x times as fast, yielding a track that is 1/x times as long as the input.
 
-    Valid factor values are floating point numbers or an integral fraction, always from the interval [0.5, 2]. If it is omitted, it defaults to *4/3*, speeding up by one third, reducing the length by 25 percent. This should be a significant speed up just low enough that even quick speakers stay understandable.
+    Valid factor values are floating point numbers or an integral fraction. If it is omitted, it defaults to *4/3*, speeding up by one third, reducing the length by 25 percent. This should be a significant speed up just low enough that even quick speakers stay understandable.
 
   - `-o` _output_:
     Place the resulting video with the given file name.
