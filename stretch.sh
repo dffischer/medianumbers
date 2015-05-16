@@ -49,17 +49,10 @@ done
 
 # Compose filtergraph.
 filter="setpts=PTS/(${factor=4/3});"
-while [ $(bc <<< "$factor >= .5") -ne 1 ]
-do
-  filter+='atempo=.5,'
-  factor="$(bc -l <<< "$factor * 2")"
-done
-while [ $(bc <<< "$factor <= 2") -ne 1 ]
-do
-  filter+='atempo=2,'
-  factor="$(bc -l <<< "$factor / 2")"
-done
-filter+="atempo=$factor"
+readonly repeats="$(bc -l <<< "l($factor)/l(.5)" | sed 's/\..*//;s/^-\?/&0/')"
+filter+="$(seq "$repeats" | sed 's/^.*$/atempo=.5,/')"
+filter+="$(seq -1 -1 "$repeats" | sed 's/^.*$/atempo=2,/')"
+filter+="atempo=$(bc -l <<< "$factor * 2^$repeats")"
 
 # Encode.
 for input in "${inputs[@]}"
