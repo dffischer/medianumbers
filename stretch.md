@@ -25,7 +25,7 @@ Invoking this command re-encodes the given input audio or video, speeding up or 
 
     The templates `$path`, `$file`, `$name` and `$ext` may be included in the argument to this option an are interpreted respectively as the file path, the the full file name, the basename and the extension of the input file.
 
-    Without this option, the output file defaults to `$name.stretched.$ext`.
+    Without this option, the output file defaults to `$name.quick.$ext` or `$name.slow.$ext` corresponding to the used factor.
 
   - `-(` ... `-)`:
     To further control the re-encoding process necessary to adjust the speed, options may be passed to the utilized ffmpeg(1) command by enclosing them in bracket arguments. Be aware that most shells like to interpret these as special characters and they thus most likely need to be escaped. Any argument found between them is passed to ffmpeg unaltered.

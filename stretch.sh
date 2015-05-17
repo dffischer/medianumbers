@@ -45,7 +45,6 @@ do
     let OPTIND++
   fi
 done
-: ${output="\$name.stretched.\$ext"}
 
 # Compose filtergraph.
 filter="setpts=PTS/(${factor=4/3});"
@@ -53,6 +52,11 @@ readonly repeats="$(bc -l <<< "l($factor)/l(.5)" | sed 's/\..*//;s/^-\?/&0/')"
 filter+="$(seq "$repeats" | sed 's/^.*$/atempo=.5,/')"
 filter+="$(seq -1 -1 "$repeats" | sed 's/^.*$/atempo=2,/')"
 filter+="atempo=$(bc -l <<< "$factor * 2^$repeats")"
+
+# Assign default.
+: ${output="\$name.$(
+  bc <<< "if ($factor < 1) print \"slow\" else print \"quick\""
+).\$ext"}
 
 # Encode.
 for input in "${inputs[@]}"
