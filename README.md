@@ -13,4 +13,15 @@ This repository collects small scripts and outgrown aliases for the query and ma
 
 The scripts can be used as they are here, or copied somewhere in your `$PATH` for frequent use.
 
-All of them need [bash](http://tiswww.case.edu/php/chet/bash/bashtop.html) to function. _Duration_ and _stretch_ also need [ffmpeg](http://ffmpeg.org/), _duration_ needs [grep](https://www.gnu.org/software/grep/) and _stretch_ needs [bc](https://www.gnu.org/software/bc/) on top of that. Accompanying manual pages can be created from the respective markdown descriptions of the programs using [ronn](https://github.com/rtomayko/ronn).
+All of them need [bash](http://tiswww.case.edu/php/chet/bash/bashtop.html) to function. The following table lists further runtime dependencies.
+
+|          | [ffmpeg][1] | [grep][2] | [bc][3] |
+| -------: | :---------: | :-------: | :-----: |
+| duration |      ✗      |     ✗     |         |
+| sum-time |             |           |         |
+| stretch  |      ✗      |           |    ✗    |
+[1]: http://ffmpeg.org/
+[2]: https://www.gnu.org/software/grep/
+[3]: https://www.gnu.org/software/bc/
+
+Accompanying manual pages can be created from the respective markdown descriptions of the programs using [ronn](https://github.com/rtomayko/ronn).
