@@ -25,3 +25,5 @@ All of them need [bash](http://tiswww.case.edu/php/chet/bash/bashtop.html) to fu
 [3]: https://www.gnu.org/software/bc/
 
 Accompanying manual pages can be created from the respective markdown descriptions of the programs using [ronn](https://github.com/rtomayko/ronn).
+
+[Arch Linux](http://archlinux.org/) users can also install a package using [the PKGBUILD found in this repository](PKGBUILD).
