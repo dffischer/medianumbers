@@ -15,7 +15,7 @@ do
         exit ;;
       o) output="$OPTARG" ;;
       s)
-        if [[ "$OPTARG" =~ ^[[:digit:]]+([/.][[:digit:]]+)?$ ]]
+        if [[ "$OPTARG" =~ ^([[:digit:]]+[/.]|\.)?[[:digit:]]+$ ]]
         then
           factor="$OPTARG"
         else
