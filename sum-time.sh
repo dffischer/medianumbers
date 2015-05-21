@@ -8,10 +8,10 @@ do
     echo "usage: $0 [hh:mm:ss.ff ...]"
     echo 'add up timespans'
     exit
-  elif  [[ "$arg" =~ ^(($number):)?(($number):)?($number)(\.($number))?$ ]]
+  elif  [[ "$arg" =~ ^((($number):)?($number):)?($number)(\.($number))?$ ]]
   then
     let "result+= \
-      360000 * 10#${BASH_REMATCH[2]:-0} + \
+      360000 * 10#${BASH_REMATCH[3]:-0} + \
       6000 * 10#${BASH_REMATCH[4]:-0} + \
       100 * 10#${BASH_REMATCH[5]} + \
       10#${BASH_REMATCH[7]:-0}"
