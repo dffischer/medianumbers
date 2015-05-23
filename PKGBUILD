@@ -9,7 +9,8 @@ license=('GPL')
 depends=('bash')
 optdepends=('ffmpeg: for duration and stretch'
             'grep: for duration'
-            'bc: for stretch')
+            'bc: for stretch'
+            'sed: for sum-time')
 makedepends=('ruby-ronn')
 
 # template input; name=git

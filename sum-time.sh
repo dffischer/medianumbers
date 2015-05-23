@@ -21,14 +21,9 @@ do
   fi
 done
 
-echo-exist() {
-  if [ "$1" -gt 0 ]
-  then
-    printf "$2%02d$3" "$1"
-  fi
-}
-echo-exist "$((${result=0} / 360000))" '' :
-echo-exist "$(($result / 6000 % 60))" '' :
-printf "$(($result / 100 % 60))"
-echo-exist "$(($result % 100))" .
-echo
+printf '%02i:%02i:%02i.%02i\n' \
+  "$((${result=0} / 360000))" \
+  "$(($result / 6000 % 60))" \
+  "$(($result / 100 % 60))" \
+  "$(($result % 100))" \
+| sed 's/^[0:]\{0,7\}//;s/\(.0\)\?0$//'
