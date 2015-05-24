@@ -22,6 +22,11 @@ Passing `-h` in any position will only show a short help text.
 An exit code of 1 signals erroneous formatting of any input value.
 
 
+## BUGS
+
+This project was created by [XZS](mailto:d.f.fischer@web.de) and [lives at GitHub](http://github.com/dffischer/medianumbers). Bugs can be filed in [the tracker found there](http://github.com/dffischer/medianumbers/issues).
+
+
 ## SEE ALSO
 
 duration(1).

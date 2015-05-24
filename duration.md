@@ -26,6 +26,11 @@ Invoking this command on any video or audio file will output its duration in hh:
 Any error in option specification will lead to an exit code of 1.
 
 
+## BUGS
+
+This project was created by [XZS](mailto:d.f.fischer@web.de) and [lives at GitHub](http://github.com/dffischer/medianumbers). Bugs can be filed in [the tracker found there](http://github.com/dffischer/medianumbers/issues).
+
+
 ## SEE ALSO
 
 ffmpeg(1), sum-time(1).

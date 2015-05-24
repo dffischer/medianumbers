@@ -42,6 +42,11 @@ An exit code of 1 signals erroneous formatting of any input value, for example a
 The exit code of the encoding ffmpeg(1) process will be passed through. As the encoding will deal with fractions of the original timespans, it is completely normal for warning messages like "Past duration ... too large" to be emitted.
 
 
+## BUGS
+
+This project was created by [XZS](mailto:d.f.fischer@web.de) and [lives at GitHub](http://github.com/dffischer/medianumbers). Bugs can be filed in [the tracker found there](http://github.com/dffischer/medianumbers/issues).
+
+
 ## SEE ALSO
 
 ffmpeg(1), ffmpeg-filters(1), in particular _atempo_ and _setpts_.
