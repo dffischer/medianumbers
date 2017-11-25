@@ -20,6 +20,7 @@ All of them need [bash](http://tiswww.case.edu/php/chet/bash/bashtop.html) to fu
 | duration |      ✗      |     ✗     |         |          |
 | sum-time |             |           |         |    ✗     |
 | stretch  |      ✗      |           |    ✗    |          |
+
 [1]: http://ffmpeg.org/
 [2]: https://www.gnu.org/software/grep/
 [3]: https://www.gnu.org/software/bc/
